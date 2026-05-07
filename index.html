@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Mayurii 🎂</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
+      background-size:400% 400%;
+      animation:bgMove 8s infinite alternate;
+      padding:20px;
+      position:relative;
+    }
+
+    @keyframes bgMove{
+      0%{
+        background-position:left;
+      }
+      100%{
+        background-position:right;
+      }
+    }
+
+    .card{
+      width:100%;
+      max-width:420px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,0.25);
+      border-radius:28px;
+      padding:35px 25px;
+      text-align:center;
+      color:white;
+      box-shadow:0 10px 40px rgba(0,0,0,0.2);
+      animation:fadeIn 1.2s ease;
+      z-index:2;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    h1{
+      font-size:2.3rem;
+      font-weight:700;
+      margin-bottom:10px;
+      text-shadow:0 0 15px rgba(255,255,255,0.8);
+    }
+
+    .emoji{
+      font-size:4rem;
+      animation:bounce 2s infinite;
+      margin:15px 0;
+    }
+
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+    }
+
+    .message{
+      font-size:1rem;
+      line-height:1.8;
+      margin-top:15px;
+      color:#fff;
+    }
+
+    .highlight{
+      font-weight:600;
+      color:#fff8dc;
+    }
+
+    button{
+      margin-top:28px;
+      padding:14px 26px;
+      border:none;
+      border-radius:50px;
+      background:white;
+      color:#ff4f81;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s ease;
+      box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    button:hover{
+      transform:scale(1.08);
+      background:#ffe6ee;
+    }
+
+    .footer{
+      margin-top:22px;
+      font-size:0.9rem;
+      opacity:0.95;
+    }
+
+    /* Floating Hearts */
+    .heart{
+      position:absolute;
+      bottom:-20px;
+      font-size:22px;
+      animation:float 8s linear infinite;
+      opacity:0.7;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0) scale(0.8);
+        opacity:0;
+      }
+      20%{
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-110vh) scale(1.4);
+        opacity:0;
+      }
+    }
+
+    @media (max-width:480px){
+
+      .card{
+        padding:28px 20px;
+      }
+
+      h1{
+        font-size:1.9rem;
+      }
+
+      .emoji{
+        font-size:3.2rem;
+      }
+
+      .message{
+        font-size:0.95rem;
+      }
+
+      button{
+        width:100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="heart" style="left:10%; animation-delay:0s;">💖</div>
+  <div class="heart" style="left:25%; animation-delay:2s;">💕</div>
+  <div class="heart" style="left:45%; animation-delay:4s;">💗</div>
+  <div class="heart" style="left:65%; animation-delay:1s;">💞</div>
+  <div class="heart" style="left:85%; animation-delay:3s;">💓</div>
+
+  <div class="card">
+
+    <h1>Happy Birthday Mayurii 🎉</h1>
+
+    <div class="emoji">🎂</div>
+
+    <div class="message">
+      Wishing the most beautiful soul a day full of
+      <span class="highlight">love, laughter, happiness</span>
+      and unforgettable memories 💖
+      <br><br>
+      May your smile always shine bright and may all
+      your dreams come true this year ✨
+      <br><br>
+      Keep being amazing, special and wonderfully you 🌸
+    </div>
+
+    <button onclick="burstConfetti()">
+      Celebrate 🎊
+    </button>
+
+    <div class="footer">
+      Made with ❤️ for Mayurii
+    </div>
+
+  </div>
+
+  <script>
+
+    // Auto confetti on page load
+    window.onload = () => {
+      launchConfetti();
+    };
+
+    function launchConfetti() {
+
+      const duration = 5 * 1000;
+      const animationEnd = Date.now() + duration;
+
+      const interval = setInterval(() => {
+
+        if (Date.now() > animationEnd) {
+          clearInterval(interval);
+          return;
+        }
+
+        confetti({
+          particleCount: 8,
+          spread: 90,
+          startVelocity: 30,
+          origin: {
+            x: Math.random(),
+            y: Math.random() - 0.2
+          }
+        });
+
+      }, 250);
+    }
+
+    // Button burst confetti
+    function burstConfetti(){
+
+      confetti({
+        particleCount: 250,
+        spread: 120,
+        startVelocity: 40,
+        scalar: 1.2,
+        origin:{
+          y:0.6
+        }
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
